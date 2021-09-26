@@ -6,13 +6,23 @@ const isProd = !isDev;
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: {
+        app: './src/index.js',
+    },
     output: {
         clean: true,
         filename: 'main.js',
         path: path.resolve(__dirname, 'build'),
     },
+    devtool: 'inline-source-map',
+    devServer: {
+        static: './build',
+        hot: true,
+        port: 9000,
+    },
     plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        })
     ],
 };
