@@ -30,7 +30,17 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
+                test: /\.m?js$/,
+                exclude: /(node_modules)/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env']
+                  }
+                }
+            },
+            {
+                test: /\.s[ac]ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
@@ -38,8 +48,14 @@ module.exports = {
                         options: {
                           sourceMap: true,
                         },
-                      },
-                  ],
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                          sourceMap: true,
+                        },
+                    },
+                ],
             }
         ]
     },
