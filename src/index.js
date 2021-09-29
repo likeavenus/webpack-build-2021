@@ -1,4 +1,4 @@
-import css from "./style.scss";
+import "./style.css";
 
 import some from './some.js';
 
